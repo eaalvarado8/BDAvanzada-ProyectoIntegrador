@@ -425,6 +425,25 @@ CREATE TABLE IF NOT EXISTS `mydb`.`HogarCombustible` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `mydb`.`DatosAdicionales`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`DatosAdicionales` (
+  `idDatosAdicionales` INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador del dato adicional',
+  `ciudad_idCiudad` INT NULL,
+  `indicadorDesempleo` DOUBLE NULL COMMENT 'Indicador de desempleo en porcentaje',
+  `tasaAsistenciasEducacionBasica` DOUBLE NULL COMMENT 'Tasa de Asistencias a la Educación General Básica',
+  `indicadorPobrezaExtremaXIngresos` DOUBLE NULL COMMENT 'Indicador de Pobreza Extrema por Nicel de Ingresos',
+  PRIMARY KEY (`idDatosAdicionales`),
+  INDEX `fk_DatosAdicionales_ciudad1_idx` (`ciudad_idCiudad` ASC) VISIBLE,
+  CONSTRAINT `fk_DatosAdicionales_ciudad1`
+    FOREIGN KEY (`ciudad_idCiudad`)
+    REFERENCES `mydb`.`ciudad` (`idCiudad`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
